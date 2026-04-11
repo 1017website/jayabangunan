@@ -36,7 +36,7 @@
   </div>
 </div>
 
-<div style="display:grid;grid-template-columns:2fr 1fr;gap:24px;margin-bottom:24px;">
+<div style="display:grid;gap:24px;margin-bottom:24px;">
 
   {{-- Chart 7 Hari --}}
   <div class="card">
@@ -59,31 +59,6 @@
         </div>
         @endforeach
       </div>
-    </div>
-  </div>
-
-  {{-- Top Pages --}}
-  <div class="card">
-    <div class="card-hd">
-      <span class="card-title">🔥 Halaman Terpopuler</span>
-    </div>
-    <div class="card-bd" style="padding:0;">
-      @if($top_pages->isEmpty())
-      <div class="empty" style="padding:30px;"><p>Belum ada data</p></div>
-      @else
-      @php $maxPage = $top_pages->first()->visits; @endphp
-      @foreach($top_pages as $page)
-      <div style="padding:12px 20px;border-bottom:1px solid #2a3040;">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
-          <span style="font-size:12px;color:#e2e8f0;font-weight:500;">{{ $page->page ?: '/' }}</span>
-          <span style="font-size:12px;font-weight:700;color:#C0001C;">{{ $page->visits }}</span>
-        </div>
-        <div style="height:4px;background:#2a3040;border-radius:4px;overflow:hidden;">
-          <div style="height:100%;width:{{ ($page->visits/$maxPage)*100 }}%;background:linear-gradient(to right,#8B0000,#C0001C);border-radius:4px;"></div>
-        </div>
-      </div>
-      @endforeach
-      @endif
     </div>
   </div>
 
