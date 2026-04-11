@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\SeoController;
 use App\Http\Controllers\Admin\VisitorController;
+use App\Http\Controllers\Admin\UserController;
 
 // ─── FRONTEND ───────────────────────────────────────────────────────
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -55,5 +56,14 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('messages',        [MessageController::class, 'index'])->name('messages.index');
         Route::get('messages/{message}', [MessageController::class, 'show'])->name('messages.show');
         Route::delete('messages/{message}', [MessageController::class, 'destroy'])->name('messages.destroy');
+
+        // Users (admin only)
+        Route::resource('users', UserController::class)->except(['show']);
+        Route::post('users/{user}/reset-password', [UserController::class, 'resetPassword'])->name('users.reset-password');
+
+        // Profile & change password (semua role)
+        Route::get('profile',          [UserController::class, 'profile'])->name('profile');
+        Route::post('profile',         [UserController::class, 'updateProfile'])->name('profile.update');
+        Route::post('change-password', [UserController::class, 'changePassword'])->name('change-password');
     });
 });

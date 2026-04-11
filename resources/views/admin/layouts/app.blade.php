@@ -213,15 +213,25 @@ tbody tr:hover{background:rgba(255,255,255,0.02);}
       @php try{$ur=\App\Models\ContactMessage::unread()->count();}catch(\Exception $e){$ur=0;} @endphp
       @if($ur>0)<span class="nb">{{ $ur }}</span>@endif
     </a>
+
+    <div class="sec-label">Akun</div>
+    @if(auth()->user()->role === 'admin')
+    <a href="{{ route('admin.users.index') }}" class="{{ request()->routeIs('admin.users*') ? 'active' : '' }}">
+      <span class="ic">👥</span><span class="lbl">Manajemen User</span>
+    </a>
+    @endif
+    <a href="{{ route('admin.profile') }}" class="{{ request()->routeIs('admin.profile') ? 'active' : '' }}">
+      <span class="ic">👤</span><span class="lbl">Profil & Password</span>
+    </a>
   </nav>
   <div class="sb-foot">
-    <div class="u-row">
+    <a href="{{ route('admin.profile') }}" class="u-row" style="text-decoration:none;transition:background 0.2s;border-radius:8px;" onmouseover="this.style.background='rgba(255,255,255,0.05)'" onmouseout="this.style.background='transparent'">
       <div class="u-av">{{ strtoupper(substr(auth()->user()->name,0,1)) }}</div>
       <div style="overflow:hidden;min-width:0;">
         <div class="u-name">{{ auth()->user()->name }}</div>
-        <div class="u-role">{{ ucfirst(auth()->user()->role) }}</div>
+        <div class="u-role" style="color:#C0001C;font-size:10px;">Profil & Password →</div>
       </div>
-    </div>
+    </a>
     <form method="POST" action="{{ route('admin.logout') }}">
       @csrf
       <button type="submit" class="lo-btn">🚪 Keluar</button>

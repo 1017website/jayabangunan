@@ -1,7 +1,11 @@
 {
     "name": "jayabangun/konstruksi-website",
     "description": "PT. Jaya Bangun Konstruksi - Website & CMS",
-    "keywords": ["laravel", "konstruksi", "cms"],
+    "keywords": [
+        "laravel",
+        "konstruksi",
+        "cms"
+    ],
     "license": "MIT",
     "require": {
         "php": "^8.2",
@@ -16,7 +20,9 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "app/"
+            "App\\": "app/",
+            "Database\\Factories\\": "database/factories/",
+            "Database\\Seeders\\": "database/seeders/"
         }
     },
     "autoload-dev": {

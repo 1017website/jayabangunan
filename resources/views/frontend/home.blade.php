@@ -199,14 +199,14 @@
     }
 
     .nav-logo-white {
-      height: 200px;
+      height: 33px;
       width: auto;
       display: block;
       transition: opacity 0.3s;
     }
 
     .nav-logo-red {
-      height: 200px;
+      height: 33px;
       width: auto;
       display: none;
       transition: opacity 0.3s;
@@ -1676,7 +1676,7 @@
     }
 
     .footer-brand img {
-      height: 150px;
+      height: 50px;
       width: auto;
       opacity: 0.9;
     }
@@ -1870,7 +1870,7 @@
       <li><a href="#about">Tentang</a></li>
       <li><a href="#services">Layanan</a></li>
       <li><a href="#projects">Proyek</a></li>
-      <li><a href="#process">Cara Kerja</a></li>
+      <li><a href="#process">Proses</a></li>
       <li><a href="#testimonials">Testimoni</a></li>
       <li><a href="#contact">Kontak</a></li>
     </ul>
