@@ -3,7 +3,6 @@
 @section('page-title','Pengaturan Website')
 @section('breadcrumb','Pengaturan')
 @section('content')
-<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 
 <form method="POST" action="{{ route('admin.settings.update') }}" enctype="multipart/form-data">
   @csrf
@@ -49,13 +48,14 @@
         </div>
       </div>
 
-      <x-admin.image-upload
-        label="Gambar Background Hero"
-        uploadName="upload_hero_bg_image"
-        urlName="settings[hero_bg_image]"
-        :currentUrl="$hero['hero_bg_image'] ?? null"
-        hint="Ukuran ideal: 1800×1000px. Akan tampil sebagai background gelap di bagian atas website."
-      />
+      @include('admin.partials.image-upload', [
+        'label'      => 'Gambar Background Hero',
+        'uploadName' => 'upload_hero_bg_image',
+        'urlName'    => 'settings[hero_bg_image]',
+        'currentUrl' => $hero['hero_bg_image'] ?? null,
+        'hint'       => 'Ukuran ideal: 1800×1000px. Akan tampil sebagai background gelap di bagian atas website.',
+        'uid'        => 'hero_bg',
+      ])
     </div>
   </div>
 
@@ -81,20 +81,22 @@
         </div>
       </div>
       <div class="frow">
-        <x-admin.image-upload
-          label="Foto Utama (kanan atas)"
-          uploadName="upload_about_image_main"
-          urlName="settings[about_image_main]"
-          :currentUrl="$about['about_image_main'] ?? null"
-          hint="Ukuran ideal: 900×600px"
-        />
-        <x-admin.image-upload
-          label="Foto Kecil (kiri bawah)"
-          uploadName="upload_about_image_sub"
-          urlName="settings[about_image_sub]"
-          :currentUrl="$about['about_image_sub'] ?? null"
-          hint="Ukuran ideal: 600×400px"
-        />
+        @include('admin.partials.image-upload', [
+          'label'      => 'Foto Utama (kanan atas)',
+          'uploadName' => 'upload_about_image_main',
+          'urlName'    => 'settings[about_image_main]',
+          'currentUrl' => $about['about_image_main'] ?? null,
+          'hint'       => 'Ukuran ideal: 900×600px',
+          'uid'        => 'about_main',
+        ])
+        @include('admin.partials.image-upload', [
+          'label'      => 'Foto Kecil (kiri bawah)',
+          'uploadName' => 'upload_about_image_sub',
+          'urlName'    => 'settings[about_image_sub]',
+          'currentUrl' => $about['about_image_sub'] ?? null,
+          'hint'       => 'Ukuran ideal: 600×400px',
+          'uid'        => 'about_sub',
+        ])
       </div>
     </div>
   </div>

@@ -4,7 +4,6 @@
 @section('breadcrumb','SEO')
 
 @section('content')
-<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 
 <form method="POST" action="{{ route('admin.seo.update') }}" enctype="multipart/form-data">
   @csrf
@@ -86,13 +85,14 @@
       <small style="color:#64748b;font-size:12px;">Tampilan saat link di-share ke media sosial</small>
     </div>
     <div class="card-bd">
-      <x-admin.image-upload
-        label="OG Image (Gambar Thumbnail Share)"
-        uploadName="upload_seo_og_image"
-        urlName="settings[seo_og_image]"
-        :currentUrl="$seo['seo_og_image'] ?? null"
-        hint="Ukuran ideal: 1200×630 px — muncul saat link dibagikan ke WhatsApp, Facebook, Twitter."
-      />
+      @include('admin.partials.image-upload', [
+        'label'      => 'OG Image (Gambar Thumbnail Share)',
+        'uploadName' => 'upload_seo_og_image',
+        'urlName'    => 'settings[seo_og_image]',
+        'currentUrl' => $seo['seo_og_image'] ?? null,
+        'hint'       => 'Ukuran ideal: 1200×630px — muncul saat link dibagikan ke WhatsApp, Facebook, Twitter.',
+        'uid'        => 'seo_og',
+      ])
       <div class="fg">
         <label class="fl">OG Type</label>
         <select name="settings[seo_og_type]" class="fs">
