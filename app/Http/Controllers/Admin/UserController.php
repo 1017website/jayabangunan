@@ -121,7 +121,7 @@ class UserController extends Controller
             'email' => $request->email,
         ]);
 
-        return redirect()->route('admin.users.profile')
+        return redirect()->route('admin.profile')
             ->with('success', 'Profil berhasil diperbarui.');
     }
 
@@ -146,7 +146,7 @@ class UserController extends Controller
 
         $user->update(['password' => Hash::make($request->new_password)]);
 
-        return redirect()->route('admin.users.profile')
+        return redirect()->route('admin.profile')
             ->with('success', 'Password berhasil diubah. Silakan login ulang.');
     }
 }
