@@ -4,7 +4,9 @@
 @section('breadcrumb','SEO')
 
 @section('content')
-<form method="POST" action="{{ route('admin.seo.update') }}">
+<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+
+<form method="POST" action="{{ route('admin.seo.update') }}" enctype="multipart/form-data">
   @csrf
 
   {{-- Meta Dasar --}}
@@ -84,16 +86,13 @@
       <small style="color:#64748b;font-size:12px;">Tampilan saat link di-share ke media sosial</small>
     </div>
     <div class="card-bd">
-      <div class="fg">
-        <label class="fl">OG Image (Gambar Thumbnail Share)</label>
-        <input type="url" name="settings[seo_og_image]" class="fc"
-               value="{{ $seo['seo_og_image'] ?? '' }}"
-               placeholder="https://jayabangun.co.id/images/og-image.jpg">
-        <small style="color:#64748b;font-size:11px;margin-top:4px;display:block;">Ukuran ideal: 1200×630 px. Bisa gunakan URL Unsplash atau upload ke hosting.</small>
-        @if(!empty($seo['seo_og_image']))
-        <img src="{{ $seo['seo_og_image'] }}" style="margin-top:10px;width:200px;height:105px;object-fit:cover;border-radius:8px;border:1px solid #2a3040;">
-        @endif
-      </div>
+      <x-admin.image-upload
+        label="OG Image (Gambar Thumbnail Share)"
+        uploadName="upload_seo_og_image"
+        urlName="settings[seo_og_image]"
+        :currentUrl="$seo['seo_og_image'] ?? null"
+        hint="Ukuran ideal: 1200×630 px — muncul saat link dibagikan ke WhatsApp, Facebook, Twitter."
+      />
       <div class="fg">
         <label class="fl">OG Type</label>
         <select name="settings[seo_og_type]" class="fs">

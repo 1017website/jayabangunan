@@ -3,8 +3,9 @@
 @section('page-title','Pengaturan Website')
 @section('breadcrumb','Pengaturan')
 @section('content')
+<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 
-<form method="POST" action="{{ route('admin.settings.update') }}">
+<form method="POST" action="{{ route('admin.settings.update') }}" enctype="multipart/form-data">
   @csrf
 
   {{-- ── HERO ─────────────────────────────────────────────────────────── --}}
@@ -48,15 +49,13 @@
         </div>
       </div>
 
-      <div class="fg">
-        <label class="fl">URL Gambar Background Hero</label>
-        <input type="url" name="settings[hero_bg_image]" class="fc" value="{{ $hero['hero_bg_image'] ?? '' }}" placeholder="https://images.unsplash.com/...">
-        @if(!empty($hero['hero_bg_image']))
-        <div style="margin-top:10px;">
-          <img src="{{ $hero['hero_bg_image'] }}" style="height:80px;border-radius:6px;opacity:0.7;">
-        </div>
-        @endif
-      </div>
+      <x-admin.image-upload
+        label="Gambar Background Hero"
+        uploadName="upload_hero_bg_image"
+        urlName="settings[hero_bg_image]"
+        :currentUrl="$hero['hero_bg_image'] ?? null"
+        hint="Ukuran ideal: 1800×1000px. Akan tampil sebagai background gelap di bagian atas website."
+      />
     </div>
   </div>
 
@@ -82,20 +81,20 @@
         </div>
       </div>
       <div class="frow">
-        <div class="fg">
-          <label class="fl">URL Foto Utama (kanan atas)</label>
-          <input type="url" name="settings[about_image_main]" class="fc" value="{{ $about['about_image_main'] ?? '' }}" placeholder="https://...">
-          @if(!empty($about['about_image_main']))
-          <img src="{{ $about['about_image_main'] }}" style="height:60px;border-radius:6px;margin-top:8px;">
-          @endif
-        </div>
-        <div class="fg">
-          <label class="fl">URL Foto Kecil (kiri bawah)</label>
-          <input type="url" name="settings[about_image_sub]" class="fc" value="{{ $about['about_image_sub'] ?? '' }}" placeholder="https://...">
-          @if(!empty($about['about_image_sub']))
-          <img src="{{ $about['about_image_sub'] }}" style="height:60px;border-radius:6px;margin-top:8px;">
-          @endif
-        </div>
+        <x-admin.image-upload
+          label="Foto Utama (kanan atas)"
+          uploadName="upload_about_image_main"
+          urlName="settings[about_image_main]"
+          :currentUrl="$about['about_image_main'] ?? null"
+          hint="Ukuran ideal: 900×600px"
+        />
+        <x-admin.image-upload
+          label="Foto Kecil (kiri bawah)"
+          uploadName="upload_about_image_sub"
+          urlName="settings[about_image_sub]"
+          :currentUrl="$about['about_image_sub'] ?? null"
+          hint="Ukuran ideal: 600×400px"
+        />
       </div>
     </div>
   </div>
