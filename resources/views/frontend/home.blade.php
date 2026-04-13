@@ -2259,33 +2259,32 @@
         </div>
       </div>
 
-    </div>
-    <div>
-      <div class="footer-col-title">Layanan</div>
-      <ul class="footer-links">
-        @foreach($services->take(5) as $svc)
-        <li><a href="#services">{{ $svc->title }}</a></li>
-        @endforeach
-      </ul>
-    </div>
-    <div>
-      <div class="footer-col-title">Perusahaan</div>
-      <ul class="footer-links">
-        <li><a href="#about">Tentang Kami</a></li>
-        <li><a href="#projects">Portofolio</a></li>
-        <li><a href="#process">Cara Kerja</a></li>
-        <li><a href="#testimonials">Testimoni</a></li>
-        <li><a href="#contact">Kontak</a></li>
-      </ul>
-    </div>
-    <div>
-      <div class="footer-col-title">Kontak</div>
-      <ul class="footer-links">
-        <li><a href="#">{{ $company['company_address'] ?? '' }}</a></li>
-        <li><a href="tel:{{ $company['company_phone'] ?? '' }}">{{ $company['company_phone'] ?? '' }}</a></li>
-        <li><a href="mailto:{{ $company['company_email'] ?? '' }}">{{ $company['company_email'] ?? '' }}</a></li>
-      </ul>
-    </div>
+      <div>
+        <div class="footer-col-title">Layanan</div>
+        <ul class="footer-links">
+          @foreach($services->take(5) as $svc)
+          <li><a href="#services">{{ $svc->title }}</a></li>
+          @endforeach
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Perusahaan</div>
+        <ul class="footer-links">
+          <li><a href="#about">Tentang Kami</a></li>
+          <li><a href="#projects">Portofolio</a></li>
+          <li><a href="#process">Cara Kerja</a></li>
+          <li><a href="#testimonials">Testimoni</a></li>
+          <li><a href="#contact">Kontak</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Kontak</div>
+        <ul class="footer-links">
+          <li><a href="#">{{ $company['company_address'] ?? '' }}</a></li>
+          <li><a href="tel:{{ $company['company_phone'] ?? '' }}">{{ $company['company_phone'] ?? '' }}</a></li>
+          <li><a href="mailto:{{ $company['company_email'] ?? '' }}">{{ $company['company_email'] ?? '' }}</a></li>
+        </ul>
+      </div>
     </div>
     <div class="footer-bottom">
       <span>© {{ date('Y') }} {{ $company['company_name'] ?? 'PT. Jaya Bangun Konstruksi' }}. Hak cipta
