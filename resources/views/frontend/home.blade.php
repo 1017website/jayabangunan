@@ -11,11 +11,11 @@
   <title>{{ $seo['seo_title'] ?? ($company['company_name'] ?? 'Jaya Bangun Konstruksi') }}</title>
   <meta name="description" content="{{ $seo['seo_description'] ?? ($company['company_tagline'] ?? '') }}">
   @if(!empty($seo['seo_keywords']))
-    <meta name="keywords" content="{{ $seo['seo_keywords'] }}">
+  <meta name="keywords" content="{{ $seo['seo_keywords'] }}">
   @endif
   <meta name="robots" content="{{ $seo['seo_robots'] ?? 'index, follow' }}">
   @if(!empty($seo['seo_canonical']))
-    <link rel="canonical" href="{{ $seo['seo_canonical'] }}">
+  <link rel="canonical" href="{{ $seo['seo_canonical'] }}">
   @endif
 
   {{-- Open Graph --}}
@@ -24,7 +24,7 @@
   <meta property="og:description" content="{{ $seo['seo_description'] ?? '' }}">
   <meta property="og:url" content="{{ url('/') }}">
   @if(!empty($seo['seo_og_image']))
-    <meta property="og:image" content="{{ $seo['seo_og_image'] }}">
+  <meta property="og:image" content="{{ $seo['seo_og_image'] }}">
   @endif
 
   {{-- Twitter Card --}}
@@ -32,12 +32,12 @@
   <meta name="twitter:title" content="{{ $seo['seo_title'] ?? '' }}">
   <meta name="twitter:description" content="{{ $seo['seo_description'] ?? '' }}">
   @if(!empty($seo['seo_og_image']))
-    <meta name="twitter:image" content="{{ $seo['seo_og_image'] }}">
+  <meta name="twitter:image" content="{{ $seo['seo_og_image'] }}">
   @endif
 
   {{-- Google Verification --}}
   @if(!empty($seo['seo_google_verification']))
-    <meta name="google-site-verification" content="{{ $seo['seo_google_verification'] }}">
+  <meta name="google-site-verification" content="{{ $seo['seo_google_verification'] }}">
   @endif
 
   <link
@@ -46,17 +46,17 @@
 
   {{-- Google Analytics --}}
   @if(!empty($seo['seo_google_analytics']))
-    <script async src="https://www.googletagmanager.com/gtag/js?id={{ $seo['seo_google_analytics'] }}"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
+  <script async src="https://www.googletagmanager.com/gtag/js?id={{ $seo['seo_google_analytics'] }}"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
 
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag('js', new Date());
-      gtag('config', '{{ $seo['
-        seo_google_analytics '] }}');
-    </script>
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+    gtag('config', '{{ $seo['
+      seo_google_analytics '] }}');
+  </script>
   @endif
   <style>
     :root {
@@ -1905,13 +1905,13 @@
       </div>
       <div class="hero-card">
         @foreach($stats->take(4) as $stat)
-          <div class="hcard-stat">
-            <div class="hcs-icon">{{ $stat->icon }}</div>
-            <div>
-              <div class="hcs-n">{{ $stat->value }}<span>{{ $stat->suffix }}</span></div>
-              <div class="hcs-l">{{ $stat->label }}</div>
-            </div>
+        <div class="hcard-stat">
+          <div class="hcs-icon">{{ $stat->icon }}</div>
+          <div>
+            <div class="hcs-n">{{ $stat->value }}<span>{{ $stat->suffix }}</span></div>
+            <div class="hcs-l">{{ $stat->label }}</div>
           </div>
+        </div>
         @endforeach
       </div>
     </div>
@@ -1924,10 +1924,10 @@
   <div class="ticker">
     <div class="ticker-track">
       @foreach($services as $s)
-        <span class="ticker-item">{{ $s->title }} <span class="ticker-dot">◆</span></span>
+      <span class="ticker-item">{{ $s->title }} <span class="ticker-dot">◆</span></span>
       @endforeach
       @foreach($services as $s)
-        <span class="ticker-item">{{ $s->title }} <span class="ticker-dot">◆</span></span>
+      <span class="ticker-item">{{ $s->title }} <span class="ticker-dot">◆</span></span>
       @endforeach
     </div>
   </div>
@@ -1978,12 +1978,12 @@
         </div>
         <div class="svc-grid rv d1">
           @foreach($services as $i => $svc)
-            <div class="svc-card">
-              <div class="svc-card-icon">{{ $svc->icon }}</div>
-              <div class="svc-card-title">{{ $svc->title }}</div>
-              <p class="svc-card-desc">{{ $svc->description }}</p>
-              <div class="svc-card-num">{{ str_pad($i + 1, 2, '0', STR_PAD_LEFT) }}</div>
-            </div>
+          <div class="svc-card">
+            <div class="svc-card-icon">{{ $svc->icon }}</div>
+            <div class="svc-card-title">{{ $svc->title }}</div>
+            <p class="svc-card-desc">{{ $svc->description }}</p>
+            <div class="svc-card-num">{{ str_pad($i + 1, 2, '0', STR_PAD_LEFT) }}</div>
+          </div>
           @endforeach
         </div>
       </div>
@@ -2001,24 +2001,24 @@
         <div class="proj-filters">
           <div class="pf active" data-cat="all">Semua</div>
           @foreach($categories as $cat)
-            <div class="pf" data-cat="{{ $cat }}">{{ $cat }}</div>
+          <div class="pf" data-cat="{{ $cat }}">{{ $cat }}</div>
           @endforeach
         </div>
       </div>
       <div class="proj-mosaic rv d1">
         @foreach($projects->take(4) as $i => $project)
-          <div class="pm-item" data-cat="{{ $project->category }}" data-img="{{ $project->image_url }}"
-            data-title="{{ $project->title }}" data-category="{{ $project->category }}" data-year="{{ $project->year }}"
-            data-location="{{ $project->location }}" data-desc="{{ $project->description }}" data-index="{{ $i }}"
-            onclick="openLightbox({{ $i }})">
-            <img src="{{ $project->image_url }}" alt="{{ $project->title }}" loading="lazy">
-            <div class="pm-overlay">
-              <div class="pm-tag">{{ $project->category }}</div>
-              <div class="pm-name">{{ $project->title }}</div>
-              <div class="pm-year">{{ $project->year }} · {{ $project->location }}</div>
-            </div>
-            <div class="pm-zoom-hint">🔍</div>
+        <div class="pm-item" data-cat="{{ $project->category }}" data-img="{{ $project->image_url }}"
+          data-title="{{ $project->title }}" data-category="{{ $project->category }}" data-year="{{ $project->year }}"
+          data-location="{{ $project->location }}" data-desc="{{ $project->description }}" data-index="{{ $i }}"
+          onclick="openLightbox({{ $i }})">
+          <img src="{{ $project->image_url }}" alt="{{ $project->title }}" loading="lazy">
+          <div class="pm-overlay">
+            <div class="pm-tag">{{ $project->category }}</div>
+            <div class="pm-name">{{ $project->title }}</div>
+            <div class="pm-year">{{ $project->year }} · {{ $project->location }}</div>
           </div>
+          <div class="pm-zoom-hint">🔍</div>
+        </div>
         @endforeach
       </div>
     </div>
@@ -2026,12 +2026,12 @@
     {{-- Tombol Lihat Semua --}}
     @php $totalProjects = $projects->count(); @endphp
     @if($totalProjects > 4)
-      <div style="text-align:center;margin-top:48px;" class="rv">
-        <a href="{{ route('projects') }}" class="hbtn-primary"
-          style="display:inline-flex;padding:16px 40px;font-size:15px;">
-          🏗 Lihat Semua {{ $totalProjects }} Proyek →
-        </a>
-      </div>
+    <div style="text-align:center;margin-top:48px;" class="rv">
+      <a href="{{ route('projects') }}" class="hbtn-primary"
+        style="display:inline-flex;padding:16px 40px;font-size:15px;">
+        🏗 Lihat Semua {{ $totalProjects }} Proyek →
+      </a>
+    </div>
     @endif
     </div>
 
@@ -2041,10 +2041,10 @@
   <section id="stats">
     <div class="stats-grid rv">
       @foreach($stats as $stat)
-        <div class="stat-cell">
-          <div class="stat-n">{{ $stat->value }}<sup>{{ $stat->suffix }}</sup></div>
-          <div class="stat-desc">{{ $stat->label }}</div>
-        </div>
+      <div class="stat-cell">
+        <div class="stat-n">{{ $stat->value }}<sup>{{ $stat->suffix }}</sup></div>
+        <div class="stat-desc">{{ $stat->label }}</div>
+      </div>
       @endforeach
     </div>
   </section>
@@ -2102,17 +2102,17 @@
       </div>
       <div class="testi-grid">
         @foreach($testimonials as $i => $t)
-          <div class="testi-card rv d{{ $i + 1 }}">
-            <div class="testi-stars">{{ $t->stars }}</div>
-            <p class="testi-text">"{{ $t->content }}"</p>
-            <div class="testi-author">
-              <img class="testi-avatar" src="{{ $t->avatar_url }}" alt="{{ $t->name }}">
-              <div>
-                <div class="testi-name">{{ $t->name }}</div>
-                <div class="testi-role">{{ $t->role }}{{ $t->company ? ', ' . $t->company : '' }}</div>
-              </div>
+        <div class="testi-card rv d{{ $i + 1 }}">
+          <div class="testi-stars">{{ $t->stars }}</div>
+          <p class="testi-text">"{{ $t->content }}"</p>
+          <div class="testi-author">
+            <img class="testi-avatar" src="{{ $t->avatar_url }}" alt="{{ $t->name }}">
+            <div>
+              <div class="testi-name">{{ $t->name }}</div>
+              <div class="testi-role">{{ $t->role }}{{ $t->company ? ', ' . $t->company : '' }}</div>
             </div>
           </div>
+        </div>
         @endforeach
       </div>
     </div>
@@ -2152,7 +2152,7 @@
       <div class="rv-r">
         <div class="cf">
           @if(session('success'))
-            <div class="alert-success">✅ {{ session('success') }}</div>
+          <div class="alert-success">✅ {{ session('success') }}</div>
           @endif
           <form action="{{ route('contact.store') }}" method="POST">
             @csrf
@@ -2178,8 +2178,9 @@
                 <select name="service" class="cf-select">
                   <option value="">Pilih Layanan</option>
                   @foreach($services as $svc)
-                    <option value="{{ $svc->title }}" {{ old('service') == $svc->title ? 'selected' : '' }}>
-                      {{ $svc->title }}</option>
+                  <option value="{{ $svc->title }}" {{ old('service') == $svc->title ? 'selected' : '' }}>
+                    {{ $svc->title }}
+                  </option>
                   @endforeach
                 </select>
               </div>
@@ -2205,33 +2206,59 @@
             alt="{{ $company['company_name'] ?? 'Jaya Bangun Konstruksi' }}">
         </div>
         <p class="footer-tagline">{{ $company['company_tagline'] ?? '' }}</p>
+
+        {{-- Social Media Icons --}}
+        <div style="display:flex;gap:10px;margin-top:20px;">
+          @if(!empty($social['social_instagram']))
+          <a href="{{ $social['social_instagram'] }}" target="_blank" rel="noopener"
+            style="width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;font-size:16px;text-decoration:none;transition:background .2s;"
+            onmouseover="this.style.background='rgba(139,0,0,0.4)'" onmouseout="this.style.background='rgba(255,255,255,0.08)'">
+            📸
+          </a>
+          @endif
+          @if(!empty($social['social_facebook']))
+          <a href="{{ $social['social_facebook'] }}" target="_blank" rel="noopener"
+            style="width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;font-size:16px;text-decoration:none;transition:background .2s;"
+            onmouseover="this.style.background='rgba(139,0,0,0.4)'" onmouseout="this.style.background='rgba(255,255,255,0.08)'">
+            👥
+          </a>
+          @endif
+          @if(!empty($social['social_youtube']))
+          <a href="{{ $social['social_youtube'] }}" target="_blank" rel="noopener"
+            style="width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;font-size:16px;text-decoration:none;transition:background .2s;"
+            onmouseover="this.style.background='rgba(139,0,0,0.4)'" onmouseout="this.style.background='rgba(255,255,255,0.08)'">
+            ▶️
+          </a>
+          @endif
+        </div>
       </div>
-      <div>
-        <div class="footer-col-title">Layanan</div>
-        <ul class="footer-links">
-          @foreach($services->take(5) as $svc)
-            <li><a href="#services">{{ $svc->title }}</a></li>
-          @endforeach
-        </ul>
-      </div>
-      <div>
-        <div class="footer-col-title">Perusahaan</div>
-        <ul class="footer-links">
-          <li><a href="#about">Tentang Kami</a></li>
-          <li><a href="#projects">Portofolio</a></li>
-          <li><a href="#process">Cara Kerja</a></li>
-          <li><a href="#testimonials">Testimoni</a></li>
-          <li><a href="#contact">Kontak</a></li>
-        </ul>
-      </div>
-      <div>
-        <div class="footer-col-title">Kontak</div>
-        <ul class="footer-links">
-          <li><a href="#">{{ $company['company_address'] ?? '' }}</a></li>
-          <li><a href="tel:{{ $company['company_phone'] ?? '' }}">{{ $company['company_phone'] ?? '' }}</a></li>
-          <li><a href="mailto:{{ $company['company_email'] ?? '' }}">{{ $company['company_email'] ?? '' }}</a></li>
-        </ul>
-      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Layanan</div>
+      <ul class="footer-links">
+        @foreach($services->take(5) as $svc)
+        <li><a href="#services">{{ $svc->title }}</a></li>
+        @endforeach
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Perusahaan</div>
+      <ul class="footer-links">
+        <li><a href="#about">Tentang Kami</a></li>
+        <li><a href="#projects">Portofolio</a></li>
+        <li><a href="#process">Cara Kerja</a></li>
+        <li><a href="#testimonials">Testimoni</a></li>
+        <li><a href="#contact">Kontak</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Kontak</div>
+      <ul class="footer-links">
+        <li><a href="#">{{ $company['company_address'] ?? '' }}</a></li>
+        <li><a href="tel:{{ $company['company_phone'] ?? '' }}">{{ $company['company_phone'] ?? '' }}</a></li>
+        <li><a href="mailto:{{ $company['company_email'] ?? '' }}">{{ $company['company_email'] ?? '' }}</a></li>
+      </ul>
+    </div>
     </div>
     <div class="footer-bottom">
       <span>© {{ date('Y') }} {{ $company['company_name'] ?? 'PT. Jaya Bangun Konstruksi' }}. Hak cipta
