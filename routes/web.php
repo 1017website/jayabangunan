@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\UserController;
 
 // ─── FRONTEND ───────────────────────────────────────────────────────
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/proyek', [HomeController::class, 'projects'])->name('projects');
 Route::post('/contact', [HomeController::class, 'contact'])->name('contact.store');
 
 // ─── ADMIN AUTH ──────────────────────────────────────────────────────

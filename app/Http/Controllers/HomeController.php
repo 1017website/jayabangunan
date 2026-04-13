@@ -32,6 +32,22 @@ class HomeController extends Controller
         ));
     }
 
+    public function projects(Request $request)
+    {
+        $company    = Setting::getGroup('company');
+        $seo        = Setting::getGroup('seo');
+        $categories = Project::active()->distinct()->pluck('category');
+        $category   = $request->get('kategori');
+
+        $projectsQuery = Project::active();
+        if ($category && $category !== 'semua') {
+            $projectsQuery->where('category', $category);
+        }
+        $projects = $projectsQuery->get();
+
+        return view('frontend.projects', compact('company', 'seo', 'projects', 'categories', 'category'));
+    }
+
     public function contact(Request $request)
     {
         $validated = $request->validate([

@@ -11,11 +11,11 @@
   <title>{{ $seo['seo_title'] ?? ($company['company_name'] ?? 'Jaya Bangun Konstruksi') }}</title>
   <meta name="description" content="{{ $seo['seo_description'] ?? ($company['company_tagline'] ?? '') }}">
   @if(!empty($seo['seo_keywords']))
-  <meta name="keywords" content="{{ $seo['seo_keywords'] }}">
+    <meta name="keywords" content="{{ $seo['seo_keywords'] }}">
   @endif
   <meta name="robots" content="{{ $seo['seo_robots'] ?? 'index, follow' }}">
   @if(!empty($seo['seo_canonical']))
-  <link rel="canonical" href="{{ $seo['seo_canonical'] }}">
+    <link rel="canonical" href="{{ $seo['seo_canonical'] }}">
   @endif
 
   {{-- Open Graph --}}
@@ -24,7 +24,7 @@
   <meta property="og:description" content="{{ $seo['seo_description'] ?? '' }}">
   <meta property="og:url" content="{{ url('/') }}">
   @if(!empty($seo['seo_og_image']))
-  <meta property="og:image" content="{{ $seo['seo_og_image'] }}">
+    <meta property="og:image" content="{{ $seo['seo_og_image'] }}">
   @endif
 
   {{-- Twitter Card --}}
@@ -32,29 +32,31 @@
   <meta name="twitter:title" content="{{ $seo['seo_title'] ?? '' }}">
   <meta name="twitter:description" content="{{ $seo['seo_description'] ?? '' }}">
   @if(!empty($seo['seo_og_image']))
-  <meta name="twitter:image" content="{{ $seo['seo_og_image'] }}">
+    <meta name="twitter:image" content="{{ $seo['seo_og_image'] }}">
   @endif
 
   {{-- Google Verification --}}
   @if(!empty($seo['seo_google_verification']))
-  <meta name="google-site-verification" content="{{ $seo['seo_google_verification'] }}">
+    <meta name="google-site-verification" content="{{ $seo['seo_google_verification'] }}">
   @endif
 
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap"
+    rel="stylesheet">
 
   {{-- Google Analytics --}}
   @if(!empty($seo['seo_google_analytics']))
-  <script async src="https://www.googletagmanager.com/gtag/js?id={{ $seo['seo_google_analytics'] }}"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ $seo['seo_google_analytics'] }}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
 
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag('js', new Date());
-    gtag('config', '{{ $seo['
-      seo_google_analytics '] }}');
-  </script>
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', '{{ $seo['
+        seo_google_analytics '] }}');
+    </script>
   @endif
   <style>
     :root {
@@ -312,7 +314,7 @@
     .hero-bg-img {
       position: absolute;
       inset: 0;
-      background:url("{{ $hero['hero_bg_image'] ?? 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1800&q=85' }}") center/cover no-repeat;
+      background: url("{{ $hero['hero_bg_image'] ?? 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1800&q=85' }}") center/cover no-repeat;
       opacity: 0.28;
       filter: grayscale(20%);
     }
@@ -1874,7 +1876,8 @@
       <li><a href="#testimonials">Testimoni</a></li>
       <li><a href="#contact">Kontak</a></li>
     </ul>
-    <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $company['company_whatsapp'] ?? '6231567890') }}" class="nav-wa" target="_blank">
+    <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $company['company_whatsapp'] ?? '6231567890') }}"
+      class="nav-wa" target="_blank">
       💬 WhatsApp
     </a>
   </nav>
@@ -1902,13 +1905,13 @@
       </div>
       <div class="hero-card">
         @foreach($stats->take(4) as $stat)
-        <div class="hcard-stat">
-          <div class="hcs-icon">{{ $stat->icon }}</div>
-          <div>
-            <div class="hcs-n">{{ $stat->value }}<span>{{ $stat->suffix }}</span></div>
-            <div class="hcs-l">{{ $stat->label }}</div>
+          <div class="hcard-stat">
+            <div class="hcs-icon">{{ $stat->icon }}</div>
+            <div>
+              <div class="hcs-n">{{ $stat->value }}<span>{{ $stat->suffix }}</span></div>
+              <div class="hcs-l">{{ $stat->label }}</div>
+            </div>
           </div>
-        </div>
         @endforeach
       </div>
     </div>
@@ -1921,10 +1924,10 @@
   <div class="ticker">
     <div class="ticker-track">
       @foreach($services as $s)
-      <span class="ticker-item">{{ $s->title }} <span class="ticker-dot">◆</span></span>
+        <span class="ticker-item">{{ $s->title }} <span class="ticker-dot">◆</span></span>
       @endforeach
       @foreach($services as $s)
-      <span class="ticker-item">{{ $s->title }} <span class="ticker-dot">◆</span></span>
+        <span class="ticker-item">{{ $s->title }} <span class="ticker-dot">◆</span></span>
       @endforeach
     </div>
   </div>
@@ -1946,9 +1949,12 @@
         <p>{{ $about['about_text1'] ?? '' }}</p>
         <p>{{ $about['about_text2'] ?? '' }}</p>
         <div class="about-highlights">
-          <div class="ah-item"><span class="ah-icon">🏅</span><span class="ah-text">Sertifikat ISO 9001:2015</span></div>
-          <div class="ah-item"><span class="ah-icon">🤝</span><span class="ah-text">Anggota GAPENSI & INKINDO</span></div>
-          <div class="ah-item"><span class="ah-icon">📜</span><span class="ah-text">Tim SKA/SKT Bersertifikat</span></div>
+          <div class="ah-item"><span class="ah-icon">🏅</span><span class="ah-text">Sertifikat ISO 9001:2015</span>
+          </div>
+          <div class="ah-item"><span class="ah-icon">🤝</span><span class="ah-text">Anggota GAPENSI & INKINDO</span>
+          </div>
+          <div class="ah-item"><span class="ah-icon">📜</span><span class="ah-text">Tim SKA/SKT Bersertifikat</span>
+          </div>
           <div class="ah-item"><span class="ah-icon">🛡️</span><span class="ah-text">SMK3 PP 50/2012 (K3)</span></div>
           <div class="ah-item"><span class="ah-icon">🏗️</span><span class="ah-text">IUJK Menengah B</span></div>
           <div class="ah-item"><span class="ah-icon">💼</span><span class="ah-text">Rp 500M+ Nilai Proyek</span></div>
@@ -1966,17 +1972,18 @@
       </div>
       <div class="svc-layout">
         <div class="svc-sidebar rv">
-          <p>Dari perencanaan hingga serah terima, kami menyediakan solusi konstruksi lengkap dengan standar kualitas dan keselamatan tertinggi.</p>
+          <p>Dari perencanaan hingga serah terima, kami menyediakan solusi konstruksi lengkap dengan standar kualitas
+            dan keselamatan tertinggi.</p>
           <a href="#contact" class="hbtn-primary" style="display:inline-flex">Diskusi Proyek →</a>
         </div>
         <div class="svc-grid rv d1">
           @foreach($services as $i => $svc)
-          <div class="svc-card">
-            <div class="svc-card-icon">{{ $svc->icon }}</div>
-            <div class="svc-card-title">{{ $svc->title }}</div>
-            <p class="svc-card-desc">{{ $svc->description }}</p>
-            <div class="svc-card-num">{{ str_pad($i+1,2,'0',STR_PAD_LEFT) }}</div>
-          </div>
+            <div class="svc-card">
+              <div class="svc-card-icon">{{ $svc->icon }}</div>
+              <div class="svc-card-title">{{ $svc->title }}</div>
+              <p class="svc-card-desc">{{ $svc->description }}</p>
+              <div class="svc-card-num">{{ str_pad($i + 1, 2, '0', STR_PAD_LEFT) }}</div>
+            </div>
           @endforeach
         </div>
       </div>
@@ -1994,43 +2001,50 @@
         <div class="proj-filters">
           <div class="pf active" data-cat="all">Semua</div>
           @foreach($categories as $cat)
-          <div class="pf" data-cat="{{ $cat }}">{{ $cat }}</div>
+            <div class="pf" data-cat="{{ $cat }}">{{ $cat }}</div>
           @endforeach
         </div>
       </div>
       <div class="proj-mosaic rv d1">
         @foreach($projects->take(4) as $i => $project)
-        <div class="pm-item"
-          data-cat="{{ $project->category }}"
-          data-img="{{ $project->image_url }}"
-          data-title="{{ $project->title }}"
-          data-category="{{ $project->category }}"
-          data-year="{{ $project->year }}"
-          data-location="{{ $project->location }}"
-          data-desc="{{ $project->description }}"
-          data-index="{{ $i }}"
-          onclick="openLightbox({{ $i }})">
-          <img src="{{ $project->image_url }}" alt="{{ $project->title }}" loading="lazy">
-          <div class="pm-overlay">
-            <div class="pm-tag">{{ $project->category }}</div>
-            <div class="pm-name">{{ $project->title }}</div>
-            <div class="pm-year">{{ $project->year }} · {{ $project->location }}</div>
+          <div class="pm-item" data-cat="{{ $project->category }}" data-img="{{ $project->image_url }}"
+            data-title="{{ $project->title }}" data-category="{{ $project->category }}" data-year="{{ $project->year }}"
+            data-location="{{ $project->location }}" data-desc="{{ $project->description }}" data-index="{{ $i }}"
+            onclick="openLightbox({{ $i }})">
+            <img src="{{ $project->image_url }}" alt="{{ $project->title }}" loading="lazy">
+            <div class="pm-overlay">
+              <div class="pm-tag">{{ $project->category }}</div>
+              <div class="pm-name">{{ $project->title }}</div>
+              <div class="pm-year">{{ $project->year }} · {{ $project->location }}</div>
+            </div>
+            <div class="pm-zoom-hint">🔍</div>
           </div>
-          <div class="pm-zoom-hint">🔍</div>
-        </div>
         @endforeach
       </div>
     </div>
+
+    {{-- Tombol Lihat Semua --}}
+    @php $totalProjects = $projects->count(); @endphp
+    @if($totalProjects > 4)
+      <div style="text-align:center;margin-top:48px;" class="rv">
+        <a href="{{ route('projects') }}" class="hbtn-primary"
+          style="display:inline-flex;padding:16px 40px;font-size:15px;">
+          🏗 Lihat Semua {{ $totalProjects }} Proyek →
+        </a>
+      </div>
+    @endif
+    </div>
+
   </section>
 
   <!-- STATS -->
   <section id="stats">
     <div class="stats-grid rv">
       @foreach($stats as $stat)
-      <div class="stat-cell">
-        <div class="stat-n">{{ $stat->value }}<sup>{{ $stat->suffix }}</sup></div>
-        <div class="stat-desc">{{ $stat->label }}</div>
-      </div>
+        <div class="stat-cell">
+          <div class="stat-n">{{ $stat->value }}<sup>{{ $stat->suffix }}</sup></div>
+          <div class="stat-desc">{{ $stat->label }}</div>
+        </div>
       @endforeach
     </div>
   </section>
@@ -2041,7 +2055,8 @@
       <div class="rv" style="text-align:center;max-width:560px;margin:0 auto 60px;">
         <div class="label" style="justify-content:center">Cara Kerja</div>
         <h2 class="sec-title">Proses <em>Kami</em></h2>
-        <p style="font-size:15px;color:var(--gray);line-height:1.8;font-weight:300;margin-top:12px;">Setiap proyek dijalankan dengan metodologi terstruktur untuk memastikan hasil terbaik.</p>
+        <p style="font-size:15px;color:var(--gray);line-height:1.8;font-weight:300;margin-top:12px;">Setiap proyek
+          dijalankan dengan metodologi terstruktur untuk memastikan hasil terbaik.</p>
       </div>
       <div class="process-steps rv d1">
         <div class="step">
@@ -2087,17 +2102,17 @@
       </div>
       <div class="testi-grid">
         @foreach($testimonials as $i => $t)
-        <div class="testi-card rv d{{ $i+1 }}">
-          <div class="testi-stars">{{ $t->stars }}</div>
-          <p class="testi-text">"{{ $t->content }}"</p>
-          <div class="testi-author">
-            <img class="testi-avatar" src="{{ $t->avatar_url }}" alt="{{ $t->name }}">
-            <div>
-              <div class="testi-name">{{ $t->name }}</div>
-              <div class="testi-role">{{ $t->role }}{{ $t->company ? ', '.$t->company : '' }}</div>
+          <div class="testi-card rv d{{ $i + 1 }}">
+            <div class="testi-stars">{{ $t->stars }}</div>
+            <p class="testi-text">"{{ $t->content }}"</p>
+            <div class="testi-author">
+              <img class="testi-avatar" src="{{ $t->avatar_url }}" alt="{{ $t->name }}">
+              <div>
+                <div class="testi-name">{{ $t->name }}</div>
+                <div class="testi-role">{{ $t->role }}{{ $t->company ? ', ' . $t->company : '' }}</div>
+              </div>
             </div>
           </div>
-        </div>
         @endforeach
       </div>
     </div>
@@ -2137,18 +2152,20 @@
       <div class="rv-r">
         <div class="cf">
           @if(session('success'))
-          <div class="alert-success">✅ {{ session('success') }}</div>
+            <div class="alert-success">✅ {{ session('success') }}</div>
           @endif
           <form action="{{ route('contact.store') }}" method="POST">
             @csrf
             <div class="cf-row">
               <div class="cf-group">
                 <label class="cf-label">Nama Lengkap *</label>
-                <input type="text" name="name" class="cf-input" placeholder="Nama Anda" value="{{ old('name') }}" required>
+                <input type="text" name="name" class="cf-input" placeholder="Nama Anda" value="{{ old('name') }}"
+                  required>
               </div>
               <div class="cf-group">
                 <label class="cf-label">Email *</label>
-                <input type="email" name="email" class="cf-input" placeholder="email@anda.com" value="{{ old('email') }}" required>
+                <input type="email" name="email" class="cf-input" placeholder="email@anda.com"
+                  value="{{ old('email') }}" required>
               </div>
             </div>
             <div class="cf-row">
@@ -2161,14 +2178,16 @@
                 <select name="service" class="cf-select">
                   <option value="">Pilih Layanan</option>
                   @foreach($services as $svc)
-                  <option value="{{ $svc->title }}" {{ old('service') == $svc->title ? 'selected' : '' }}>{{ $svc->title }}</option>
+                    <option value="{{ $svc->title }}" {{ old('service') == $svc->title ? 'selected' : '' }}>
+                      {{ $svc->title }}</option>
                   @endforeach
                 </select>
               </div>
             </div>
             <div class="cf-group">
               <label class="cf-label">Pesan *</label>
-              <textarea name="message" class="cf-textarea" placeholder="Ceritakan proyek Anda..." required>{{ old('message') }}</textarea>
+              <textarea name="message" class="cf-textarea" placeholder="Ceritakan proyek Anda..."
+                required>{{ old('message') }}</textarea>
             </div>
             <button type="submit" class="cf-btn">🚀 Kirim Pesan</button>
           </form>
@@ -2182,7 +2201,8 @@
     <div class="footer-grid">
       <div>
         <div class="footer-brand">
-          <img src="{{ asset('images/logo-white.png') }}" alt="{{ $company['company_name'] ?? 'Jaya Bangun Konstruksi' }}">
+          <img src="{{ asset('images/logo-white.png') }}"
+            alt="{{ $company['company_name'] ?? 'Jaya Bangun Konstruksi' }}">
         </div>
         <p class="footer-tagline">{{ $company['company_tagline'] ?? '' }}</p>
       </div>
@@ -2190,7 +2210,7 @@
         <div class="footer-col-title">Layanan</div>
         <ul class="footer-links">
           @foreach($services->take(5) as $svc)
-          <li><a href="#services">{{ $svc->title }}</a></li>
+            <li><a href="#services">{{ $svc->title }}</a></li>
           @endforeach
         </ul>
       </div>
@@ -2214,8 +2234,10 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© {{ date('Y') }} {{ $company['company_name'] ?? 'PT. Jaya Bangun Konstruksi' }}. Hak cipta dilindungi.</span>
-      <span>Developed by <a href="https://1017studios.id" target="_blank" style="color: #8b0000;">1017studios.id</a></span>
+      <span>© {{ date('Y') }} {{ $company['company_name'] ?? 'PT. Jaya Bangun Konstruksi' }}. Hak cipta
+        dilindungi.</span>
+      <span>Developed by <a href="https://1017studios.id" target="_blank"
+          style="color: #8b0000;">1017studios.id</a></span>
     </div>
   </footer>
 
