@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\SeoController;
 use App\Http\Controllers\Admin\VisitorController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\AboutHighlightController;
 
 // ─── FRONTEND ───────────────────────────────────────────────────────
 Route::get('/', [HomeController::class, 'index'])->name('home');
