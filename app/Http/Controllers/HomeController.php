@@ -8,6 +8,7 @@ use App\Models\Project;
 use App\Models\Testimonial;
 use App\Models\Stat;
 use App\Models\ContactMessage;
+use App\Models\AboutHighlight;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -24,11 +25,20 @@ class HomeController extends Controller
         $categories   = Project::active()->distinct()->pluck('category');
         $stats        = Stat::active()->get();
         $testimonials = Testimonial::active()->get();
+        $highlights = AboutHighlight::active()->get();
 
         return view('frontend.home', compact(
-            'hero','about','company','social','seo',
-            'services','projects','categories',
-            'stats','testimonials'
+            'hero',
+            'about',
+            'company',
+            'social',
+            'seo',
+            'services',
+            'projects',
+            'categories',
+            'stats',
+            'testimonials',
+            'highlights'
         ));
     }
 

@@ -23,7 +23,7 @@ Route::post('/contact', [HomeController::class, 'contact'])->name('contact.store
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('login',  [AuthController::class, 'showLogin'])->name('login');
     Route::post('login', [AuthController::class, 'login'])->name('login.post');
-    Route::post('logout',[AuthController::class, 'logout'])->name('logout');
+    Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
     // Protected admin routes
     Route::middleware('auth')->group(function () {
@@ -66,5 +66,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('profile',          [UserController::class, 'profile'])->name('profile');
         Route::post('profile',         [UserController::class, 'updateProfile'])->name('profile.update');
         Route::post('change-password', [UserController::class, 'changePassword'])->name('change-password');
+
+        // About Highlights
+        Route::resource('about-highlights', AboutHighlightController::class)->except(['show']);
     });
 });

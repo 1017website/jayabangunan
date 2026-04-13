@@ -1949,15 +1949,12 @@
         <p>{{ $about['about_text1'] ?? '' }}</p>
         <p>{{ $about['about_text2'] ?? '' }}</p>
         <div class="about-highlights">
-          <div class="ah-item"><span class="ah-icon">🏅</span><span class="ah-text">Sertifikat ISO 9001:2015</span>
+          @foreach($highlights as $h)
+          <div class="ah-item">
+            <span class="ah-icon">{{ $h->icon }}</span>
+            <span class="ah-text">{{ $h->text }}</span>
           </div>
-          <div class="ah-item"><span class="ah-icon">🤝</span><span class="ah-text">Anggota GAPENSI & INKINDO</span>
-          </div>
-          <div class="ah-item"><span class="ah-icon">📜</span><span class="ah-text">Tim SKA/SKT Bersertifikat</span>
-          </div>
-          <div class="ah-item"><span class="ah-icon">🛡️</span><span class="ah-text">SMK3 PP 50/2012 (K3)</span></div>
-          <div class="ah-item"><span class="ah-icon">🏗️</span><span class="ah-text">IUJK Menengah B</span></div>
-          <div class="ah-item"><span class="ah-icon">💼</span><span class="ah-text">Rp 500M+ Nilai Proyek</span></div>
+          @endforeach
         </div>
       </div>
     </div>
