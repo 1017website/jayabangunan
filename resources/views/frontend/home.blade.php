@@ -88,6 +88,12 @@
       overflow-x: hidden;
     }
 
+    html,
+    body {
+      overflow-x: hidden;
+      max-width: 100%;
+    }
+
     .cursor {
       width: 10px;
       height: 10px;
@@ -277,7 +283,7 @@
     }
 
     .nav-wa {
-      background: var(--red);
+      background: #25D366;
       color: #fff;
       padding: 10px 22px;
       border-radius: 4px;
@@ -289,11 +295,48 @@
       align-items: center;
       gap: 8px;
       transition: background 0.2s, transform 0.2s;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
 
     .nav-wa:hover {
-      background: var(--red3);
+      background: #1ebe5d;
       transform: translateY(-1px);
+    }
+
+    .nav-wa .wa-label {
+      display: inline;
+    }
+
+    @media(max-width: 900px) {
+      nav {
+        padding: 0 16px;
+        max-width: 100vw;
+        box-sizing: border-box;
+      }
+
+      .nav-brand img {
+        height: 28px;
+      }
+
+      .nav-wa {
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+        padding: 0;
+        border-radius: 50%;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+
+      .nav-wa .wa-label {
+        display: none;
+      }
+
+      .nav-wa svg {
+        width: 18px;
+        height: 18px;
+      }
     }
 
     #hero {
@@ -1878,7 +1921,11 @@
     </ul>
     <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $company['company_whatsapp'] ?? '6231567890') }}"
       class="nav-wa" target="_blank">
-      💬 WhatsApp
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="white" style="flex-shrink:0;">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+        <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.532 5.859L.057 23.625a.75.75 0 0 0 .921.908l5.919-1.55A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.853 0-3.587-.5-5.084-1.375l-.362-.214-3.754.984.999-3.648-.235-.374A9.96 9.96 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z" />
+      </svg>
+      <span class="wa-label">WhatsApp</span>
     </a>
   </nav>
 
