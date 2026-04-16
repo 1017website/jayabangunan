@@ -63,6 +63,8 @@ class DatabaseSeeder extends Seeder
             ['key' => 'seo_canonical',    'value' => '',                       'group' => 'seo'],
             ['key' => 'seo_google_analytics', 'value' => '',                   'group' => 'seo'],
             ['key' => 'seo_google_verification', 'value' => '',                'group' => 'seo'],
+            ['key' => 'seo_meta_pixel',      'value' => '', 'group' => 'seo'],
+            ['key' => 'seo_google_tag_manager', 'value' => '', 'group' => 'seo'],
         ];
         foreach ($settings as $s) {
             DB::table('settings')->insert(array_merge($s, ['created_at' => now(), 'updated_at' => now()]));
