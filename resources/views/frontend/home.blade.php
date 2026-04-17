@@ -2397,14 +2397,6 @@
         <div class="cf">
           @if(session('success'))
             <div class="alert-success">✅ {{ session('success') }}</div>
-            @if(!empty($seo['seo_meta_pixel']))
-              <script>
-                fbq('track', 'Lead', {
-                  content_name: 'Form Kontak',
-                  content_category: 'Konstruksi'
-                });
-              </script>
-            @endif
           @endif
           <form action="{{ route('contact.store') }}" method="POST">
             @csrf
@@ -2637,6 +2629,18 @@
           scrollTracked = true;
           fbq('trackCustom', 'ScrollPage', { depth: '50%' });
         }
+      });
+    @endif
+
+    // ── Meta Pixel: Lead saat klik WhatsApp ───────────────────────────
+    @if(!empty($seo['seo_meta_pixel']))
+      document.querySelectorAll('a[href*="wa.me"]').forEach(function (el) {
+        el.addEventListener('click', function () {
+          fbq('track', 'Lead', {
+            content_name: 'WhatsApp Click',
+            content_category: 'Konstruksi'
+          });
+        });
       });
     @endif
 
