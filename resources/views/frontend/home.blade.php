@@ -81,6 +81,13 @@
         document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
       fbq('init', '{{ $seo['seo_meta_pixel'] }}');
       fbq('track', 'PageView');
+
+      // ViewContent — saat halaman selesai dimuat
+      fbq('track', 'ViewContent', {
+        content_name: '{{ $seo['seo_title'] ?? ($company['company_name'] ?? '') }}',
+        content_category: 'Konstruksi',
+        content_type: 'website'
+      });
     </script>
     <noscript>
       <img height="1" width="1" style="display:none"
@@ -2390,6 +2397,14 @@
         <div class="cf">
           @if(session('success'))
             <div class="alert-success">✅ {{ session('success') }}</div>
+            @if(!empty($seo['seo_meta_pixel']))
+              <script>
+                fbq('track', 'Lead', {
+                  content_name: 'Form Kontak',
+                  content_category: 'Konstruksi'
+                });
+              </script>
+            @endif
           @endif
           <form action="{{ route('contact.store') }}" method="POST">
             @csrf
@@ -2611,6 +2626,19 @@
     window.addEventListener("scroll", () => {
       navbar.classList.toggle("scrolled", window.scrollY > 60);
     });
+
+    // ── Meta Pixel: Scroll 50% ────────────────────────────────────────
+    @if(!empty($seo['seo_meta_pixel']))
+      let scrollTracked = false;
+      window.addEventListener('scroll', function () {
+        if (scrollTracked) return;
+        const scrolled = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+        if (scrolled >= 0.5) {
+          scrollTracked = true;
+          fbq('trackCustom', 'ScrollPage', { depth: '50%' });
+        }
+      });
+    @endif
 
     // ── Scroll reveal ─────────────────────────────────────────────────
     const obs = new IntersectionObserver(entries => {
