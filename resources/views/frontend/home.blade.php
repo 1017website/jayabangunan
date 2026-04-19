@@ -256,6 +256,10 @@
       backdrop-filter: blur(12px);
     }
 
+    nav.scrolled #hamburger span {
+      background: #111111;
+    }
+
     .nav-brand {
       display: flex;
       align-items: center;
@@ -2100,6 +2104,10 @@
         gap: 40px;
       }
     }
+
+    @media(max-width:900px) {
+      #hamburger { display:flex !important; }
+    }
   </style>
 </head>
 
@@ -2147,6 +2155,27 @@
       </svg>
       <span class="wa-label">WhatsApp</span>
     </a>
+
+    {{-- Hamburger Mobile --}}
+    <button id="hamburger" onclick="toggleMobile()"
+      style="display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px;z-index:1001;"
+      aria-label="Menu">
+      <span style="display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:all .3s;"></span>
+      <span style="display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:all .3s;"></span>
+      <span style="display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:all .3s;"></span>
+    </button>
+
+    {{-- Mobile Dropdown --}}
+    <div id="mobileNav"
+      style="display:none;position:fixed;top:70px;left:0;right:0;background:rgba(255,255,255,0.98);backdrop-filter:blur(20px);box-shadow:0 4px 20px rgba(0,0,0,0.1);z-index:999;flex-direction:column;">
+      <a href="#about"        onclick="closeMobile()" style="padding:14px 24px;font-size:14px;font-weight:500;color:#111;text-decoration:none;border-bottom:1px solid rgba(0,0,0,0.06);display:block;">Tentang</a>
+      <a href="#services"     onclick="closeMobile()" style="padding:14px 24px;font-size:14px;font-weight:500;color:#111;text-decoration:none;border-bottom:1px solid rgba(0,0,0,0.06);display:block;">Layanan</a>
+      <a href="#projects"     onclick="closeMobile()" style="padding:14px 24px;font-size:14px;font-weight:500;color:#111;text-decoration:none;border-bottom:1px solid rgba(0,0,0,0.06);display:block;">Proyek</a>
+      <a href="#process"      onclick="closeMobile()" style="padding:14px 24px;font-size:14px;font-weight:500;color:#111;text-decoration:none;border-bottom:1px solid rgba(0,0,0,0.06);display:block;">Proses</a>
+      <a href="#testimonials" onclick="closeMobile()" style="padding:14px 24px;font-size:14px;font-weight:500;color:#111;text-decoration:none;border-bottom:1px solid rgba(0,0,0,0.06);display:block;">Testimoni</a>
+      <a href="#contact"      onclick="closeMobile()" style="padding:14px 24px;font-size:14px;font-weight:500;color:#111;text-decoration:none;border-bottom:1px solid rgba(0,0,0,0.06);display:block;">Kontak</a>
+      
+    </div>
   </nav>
 
   <!-- HERO -->
@@ -2647,6 +2676,13 @@
     const navbar = document.getElementById("navbar");
     window.addEventListener("scroll", () => {
       navbar.classList.toggle("scrolled", window.scrollY > 60);
+      // Update warna hamburger saat scroll
+      const spans = document.querySelectorAll('#hamburger span');
+      if (window.scrollY > 60) {
+        spans.forEach(s => s.style.background = '#111111');
+      } else {
+        spans.forEach(s => s.style.background = '#ffffff');
+      }
     });
 
     // ── Meta Pixel: Scroll 50% ────────────────────────────────────────
@@ -2820,6 +2856,34 @@
     }, {
       passive: true
     });
+
+    function toggleMobile() {
+      const nav = document.getElementById('mobileNav');
+      const hbg = document.getElementById('hamburger');
+      const spans = hbg.querySelectorAll('span');
+      const isOpen = nav.style.display === 'flex';
+      if (isOpen) {
+        closeMobile();
+      } else {
+        nav.style.display = 'flex';
+        spans[0].style.transform = 'rotate(45deg) translate(5px,5px)';
+        spans[1].style.opacity = '0';
+        spans[2].style.transform = 'rotate(-45deg) translate(5px,-5px)';
+        // Warna span saat scrolled
+        if (navbar.classList.contains('scrolled')) {
+          spans.forEach(s => s.style.background = '#111');
+        }
+      }
+    }
+    function closeMobile() {
+      const nav = document.getElementById('mobileNav');
+      const spans = document.querySelectorAll('#hamburger span');
+      nav.style.display = 'none';
+      spans.forEach(s => {
+        s.style.transform = 'none';
+        s.style.opacity = '1';
+      });
+    }
   </script>
 </body>
 
