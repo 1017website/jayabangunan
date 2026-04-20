@@ -346,7 +346,8 @@
     .nav-wa {
       background: #25D366;
       color: #fff;
-      padding: 10px 22px;
+      width: 250px;
+      height: 40px;
       border-radius: 4px;
       font-size: 13px;
       font-weight: 600;
@@ -354,6 +355,7 @@
       text-decoration: none;
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: 8px;
       transition: background 0.2s, transform 0.2s;
       white-space: nowrap;
@@ -381,8 +383,6 @@
       }
 
       .nav-wa {
-        width: 110px;
-        height: 30px;
         min-width: 40px;
         padding: 0;
         /*border-radius: 50%;*/
@@ -444,8 +444,6 @@
       }
 
       .nav-wa {
-        width: 110px;
-        height: 30px;
         min-width: 40px;
         padding: 0;
         /*border-radius: 50%;*/
@@ -979,6 +977,12 @@
       color: var(--gray);
       font-weight: 300;
       margin-bottom: 18px;
+    }
+
+    @media(max-width:900px) {
+      .about-text {
+        padding-top: 7rem;
+      }
     }
 
     .about-highlights {
