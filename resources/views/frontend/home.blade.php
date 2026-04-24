@@ -2112,6 +2112,19 @@
     @media(max-width:900px) {
       #hamburger { display:flex !important; }
     }
+
+    #video-grid {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    @media(max-width:480px) {
+      #video-grid {
+        grid-template-columns: 1fr 1fr !important;
+      }
+      #videos {
+        padding: 60px 20px !important;
+      }
+    }
   </style>
 </head>
 
@@ -2345,6 +2358,84 @@
       @endforeach
     </div>
   </section>
+
+  <!-- VIDEOS -->
+  @if($videos->count() > 0)
+  <section id="videos" style="background:var(--white);padding:80px 52px;">
+    <div style="max-width:1300px;margin:0 auto;">
+
+      {{-- Header --}}
+      <div class="rv" style="text-align:center;max-width:520px;margin:0 auto 52px;">
+        <div class="label" style="justify-content:center;">Video</div>
+        <h2 class="sec-title">Lihat Proses <em>Kami</em></h2>
+        <p style="font-size:15px;color:var(--gray);line-height:1.8;font-weight:300;margin-top:12px;">
+          Dokumentasi nyata dari proyek-proyek yang sedang dan telah kami kerjakan.
+        </p>
+      </div>
+
+      {{-- Grid Video --}}
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;max-width:900px;margin:0 auto;" id="video-grid">
+        @foreach($videos as $i => $vid)
+        <div class="rv" style="border-radius:14px;overflow:hidden;background:#000;position:relative;aspect-ratio:9/16;cursor:pointer;max-height:480px;"
+            onclick="openVideoModal('{{ $vid->video_url }}','{{ addslashes($vid->title) }}','{{ addslashes($vid->description ?? '') }}')">
+
+          {{-- Video element --}}
+          <video
+            src="{{ $vid->video_url }}"
+            @if($vid->thumbnail_url) poster="{{ $vid->thumbnail_url }}" @endif
+            style="width:100%;height:100%;object-fit:cover;display:block;"
+            muted
+            loop
+            playsinline
+            preload="none"
+            onmouseenter="this.play()"
+            onmouseleave="this.pause();this.currentTime=0;">
+          </video>
+
+          {{-- Overlay --}}
+          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.1) 50%,transparent 100%);pointer-events:none;"></div>
+
+          {{-- Play icon --}}
+          <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,0.2);backdrop-filter:blur(6px);border:2px solid rgba(255,255,255,0.4);display:flex;align-items:center;justify-content:center;pointer-events:none;transition:opacity 0.3s;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+
+          {{-- Info --}}
+          <div style="position:absolute;bottom:0;left:0;right:0;padding:16px 14px;pointer-events:none;">
+            <div style="font-size:13px;font-weight:700;color:#fff;line-height:1.3;">{{ $vid->title }}</div>
+            @if($vid->description)
+            <div style="font-size:11px;color:rgba(255,255,255,0.6);margin-top:4px;">{{ Str::limit($vid->description, 60) }}</div>
+            @endif
+          </div>
+        </div>
+        @endforeach
+      </div>
+    </div>
+  </section>
+
+  {{-- Video Modal --}}
+  <div id="video-modal"
+      style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.95);align-items:center;justify-content:center;"
+      onclick="closeVideoModal()">
+    <div style="position:relative;width:100%;max-width:420px;margin:0 auto;" onclick="event.stopPropagation()">
+      {{-- Close --}}
+      <button onclick="closeVideoModal()"
+              style="position:absolute;top:-44px;right:0;background:none;border:none;color:#fff;font-size:28px;cursor:pointer;line-height:1;">✕</button>
+      {{-- Video --}}
+      <video id="modal-video"
+            style="width:100%;border-radius:12px;background:#000;max-height:80vh;"
+            controls
+            playsinline
+            autoplay>
+      </video>
+      {{-- Info --}}
+      <div style="padding:14px 4px 0;">
+        <div id="modal-title" style="font-size:16px;font-weight:700;color:#fff;"></div>
+        <div id="modal-desc"  style="font-size:13px;color:rgba(255,255,255,0.5);margin-top:4px;"></div>
+      </div>
+    </div>
+  </div>
+  @endif
 
   <!-- PROCESS -->
   <section id="process" class="sec">
@@ -2888,6 +2979,29 @@
         s.style.opacity = '1';
       });
     }
+
+    // ── Video Modal ───────────────────────────────────────────────────
+    function openVideoModal(src, title, desc) {
+      const modal = document.getElementById('video-modal');
+      const video = document.getElementById('modal-video');
+      document.getElementById('modal-title').textContent = title;
+      document.getElementById('modal-desc').textContent  = desc;
+      video.src = src;
+      modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+      video.play();
+    }
+    function closeVideoModal() {
+      const modal = document.getElementById('video-modal');
+      const video = document.getElementById('modal-video');
+      video.pause();
+      video.src = '';
+      modal.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeVideoModal();
+    });
   </script>
 </body>
 

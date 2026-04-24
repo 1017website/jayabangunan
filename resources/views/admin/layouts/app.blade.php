@@ -769,7 +769,8 @@
   <aside class="sb" id="sb">
     <div class="sb-logo">
       <a href="{{ route('admin.dashboard') }}" style="display:flex;align-items:center;">
-        <img src="{{ asset('images/logo-white.png') }}" alt="Jaya Bangun" style="height:36px;width:auto;filter:brightness(1);">
+        <img src="{{ asset('images/logo-white.png') }}" alt="Jaya Bangun"
+          style="height:36px;width:auto;filter:brightness(1);">
       </a>
       <small>CMS Panel</small>
     </div>
@@ -786,7 +787,8 @@
       <a href="{{ route('admin.settings.index') }}" class="{{ request()->routeIs('admin.settings*') ? 'active' : '' }}">
         <span class="ic">⚙️</span><span class="lbl">Pengaturan</span>
       </a>
-      <a href="{{ route('admin.about-highlights.index') }}" class="{{ request()->routeIs('admin.about-highlights*') ? 'active' : '' }}">
+      <a href="{{ route('admin.about-highlights.index') }}"
+        class="{{ request()->routeIs('admin.about-highlights*') ? 'active' : '' }}">
         <span class="ic">🏅</span><span class="lbl">Highlight About</span>
       </a>
       <a href="{{ route('admin.seo.index') }}" class="{{ request()->routeIs('admin.seo*') ? 'active' : '' }}">
@@ -798,40 +800,54 @@
       <a href="{{ route('admin.projects.index') }}" class="{{ request()->routeIs('admin.projects*') ? 'active' : '' }}">
         <span class="ic">🏗️</span><span class="lbl">Proyek</span>
       </a>
-      <a href="{{ route('admin.testimonials.index') }}" class="{{ request()->routeIs('admin.testimonials*') ? 'active' : '' }}">
+      <a href="{{ route('admin.testimonials.index') }}"
+        class="{{ request()->routeIs('admin.testimonials*') ? 'active' : '' }}">
         <span class="ic">💬</span><span class="lbl">Testimoni</span>
       </a>
       <a href="{{ route('admin.stats.index') }}" class="{{ request()->routeIs('admin.stats*') ? 'active' : '' }}">
         <span class="ic">📊</span><span class="lbl">Statistik</span>
       </a>
+      <a href="{{ route('admin.videos.index') }}" class="{{ request()->routeIs('admin.videos*') ? 'active' : '' }}">
+        <span class="ic">🎬</span><span class="lbl">Video</span>
+      </a>
 
       <div class="sec-label">Analitik</div>
       <a href="{{ route('admin.visitors.index') }}" class="{{ request()->routeIs('admin.visitors*') ? 'active' : '' }}">
         <span class="ic">👥</span><span class="lbl">Pengunjung</span>
-        @php try{$tv=\App\Models\VisitorLog::todayCount();}catch(\Exception $e){$tv=0;} @endphp
-        @if($tv>0)<span class="nb bl">{{ $tv }}</span>@endif
+        @php try {
+            $tv = \App\Models\VisitorLog::todayCount();
+          } catch (\Exception $e) {
+            $tv = 0;
+        } @endphp
+        @if($tv > 0)<span class="nb bl">{{ $tv }}</span>@endif
       </a>
 
       <div class="sec-label">Komunikasi</div>
       <a href="{{ route('admin.messages.index') }}" class="{{ request()->routeIs('admin.messages*') ? 'active' : '' }}">
         <span class="ic">✉️</span><span class="lbl">Pesan Masuk</span>
-        @php try{$ur=\App\Models\ContactMessage::unread()->count();}catch(\Exception $e){$ur=0;} @endphp
-        @if($ur>0)<span class="nb">{{ $ur }}</span>@endif
+        @php try {
+            $ur = \App\Models\ContactMessage::unread()->count();
+          } catch (\Exception $e) {
+            $ur = 0;
+        } @endphp
+        @if($ur > 0)<span class="nb">{{ $ur }}</span>@endif
       </a>
 
       <div class="sec-label">Akun</div>
       @if(auth()->user()->role === 'admin')
-      <a href="{{ route('admin.users.index') }}" class="{{ request()->routeIs('admin.users*') ? 'active' : '' }}">
-        <span class="ic">👥</span><span class="lbl">Manajemen User</span>
-      </a>
+        <a href="{{ route('admin.users.index') }}" class="{{ request()->routeIs('admin.users*') ? 'active' : '' }}">
+          <span class="ic">👥</span><span class="lbl">Manajemen User</span>
+        </a>
       @endif
       <a href="{{ route('admin.profile') }}" class="{{ request()->routeIs('admin.profile') ? 'active' : '' }}">
         <span class="ic">👤</span><span class="lbl">Profil & Password</span>
       </a>
     </nav>
     <div class="sb-foot">
-      <a href="{{ route('admin.profile') }}" class="u-row" style="text-decoration:none;transition:background 0.2s;border-radius:8px;" onmouseover="this.style.background='rgba(255,255,255,0.05)'" onmouseout="this.style.background='transparent'">
-        <div class="u-av">{{ strtoupper(substr(auth()->user()->name,0,1)) }}</div>
+      <a href="{{ route('admin.profile') }}" class="u-row"
+        style="text-decoration:none;transition:background 0.2s;border-radius:8px;"
+        onmouseover="this.style.background='rgba(255,255,255,0.05)'" onmouseout="this.style.background='transparent'">
+        <div class="u-av">{{ strtoupper(substr(auth()->user()->name, 0, 1)) }}</div>
         <div style="overflow:hidden;min-width:0;">
           <div class="u-name">{{ auth()->user()->name }}</div>
           <div class="u-role" style="color:#C0001C;font-size:10px;">Profil & Password →</div>
@@ -852,8 +868,8 @@
           <span></span><span></span><span></span>
         </button>
         <div>
-          <div class="tb-title">@yield('page-title','Dashboard')</div>
-          <div class="tb-bc">Admin / @yield('breadcrumb','Dashboard')</div>
+          <div class="tb-title">@yield('page-title', 'Dashboard')</div>
+          <div class="tb-bc">Admin / @yield('breadcrumb', 'Dashboard')</div>
         </div>
       </div>
       <div class="tb-actions">@yield('topbar-actions')</div>
@@ -861,13 +877,13 @@
 
     <div class="pc">
       @if(session('success'))
-      <div class="alert alert-success">✅ {{ session('success') }}</div>
+        <div class="alert alert-success">✅ {{ session('success') }}</div>
       @endif
       @if($errors->any())
-      <div class="alert alert-danger">
-        <strong>Ada kesalahan:</strong><br>
-        @foreach($errors->all() as $e)• {{ $e }}<br>@endforeach
-      </div>
+        <div class="alert alert-danger">
+          <strong>Ada kesalahan:</strong><br>
+          @foreach($errors->all() as $e)• {{ $e }}<br>@endforeach
+        </div>
       @endif
 
       @yield('content')
