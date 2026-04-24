@@ -2360,11 +2360,10 @@
   </section>
 
   <!-- VIDEOS -->
-  @if($videos->count() > 0)
-  <section id="videos" style="background:var(--white);padding:80px 52px;">
+  @if(isset($videos) && $videos->count() > 0)
+  <section id="videos" style="background:var(--off);padding:80px 52px;">
     <div style="max-width:1300px;margin:0 auto;">
 
-      {{-- Header --}}
       <div class="rv" style="text-align:center;max-width:520px;margin:0 auto 52px;">
         <div class="label" style="justify-content:center;">Video</div>
         <h2 class="sec-title">Lihat Proses <em>Kami</em></h2>
@@ -2373,31 +2372,31 @@
         </p>
       </div>
 
-      {{-- Grid Video --}}
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;max-width:900px;margin:0 auto;" id="video-grid">
-        @foreach($videos as $i => $vid)
-        <div class="rv" style="border-radius:14px;overflow:hidden;background:#000;position:relative;aspect-ratio:9/16;cursor:pointer;max-height:480px;"
-            onclick="openVideoModal('{{ $vid->video_url }}','{{ addslashes($vid->title) }}','{{ addslashes($vid->description ?? '') }}')">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;max-width:1100px;margin:0 auto;">
+        @foreach($videos as $vid)
+        <div class="rv" onclick="openVideoModal('{{ $vid->embed_url }}','{{ addslashes($vid->title) }}','{{ addslashes($vid->description ?? '') }}')"
+            style="border-radius:14px;overflow:hidden;background:#000;position:relative;aspect-ratio:9/16;cursor:pointer;max-height:460px;">
 
-          {{-- Video element --}}
-          <video
-            src="{{ $vid->video_url }}"
-            @if($vid->thumbnail_url) poster="{{ $vid->thumbnail_url }}" @endif
-            style="width:100%;height:100%;object-fit:cover;display:block;"
-            muted
-            loop
-            playsinline
-            preload="none"
-            onmouseenter="this.play()"
-            onmouseleave="this.pause();this.currentTime=0;">
-          </video>
+          {{-- Thumbnail dari YouTube --}}
+          <img src="{{ $vid->thumbnail_url }}"
+              style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.4s;"
+              onerror="this.src='https://img.youtube.com/vi/{{ $vid->youtube_id }}/hqdefault.jpg'"
+              onmouseover="this.style.transform='scale(1.04)'"
+              onmouseout="this.style.transform='scale(1)'">
 
-          {{-- Overlay --}}
-          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.1) 50%,transparent 100%);pointer-events:none;"></div>
+          {{-- Gradient overlay --}}
+          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.75) 0%,rgba(0,0,0,0.1) 50%,transparent 100%);pointer-events:none;"></div>
 
-          {{-- Play icon --}}
-          <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,0.2);backdrop-filter:blur(6px);border:2px solid rgba(255,255,255,0.4);display:flex;align-items:center;justify-content:center;pointer-events:none;transition:opacity 0.3s;">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+          {{-- Play button --}}
+          <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:56px;height:56px;border-radius:50%;background:rgba(255,0,0,0.85);display:flex;align-items:center;justify-content:center;pointer-events:none;box-shadow:0 4px 20px rgba(0,0,0,0.4);">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+
+          {{-- YouTube badge --}}
+          <div style="position:absolute;top:12px;right:12px;background:rgba(0,0,0,0.6);border-radius:4px;padding:3px 7px;pointer-events:none;">
+            <svg width="40" height="12" viewBox="0 0 90 20" fill="white">
+              <text x="0" y="16" font-family="Arial" font-size="16" font-weight="bold">▶ YouTube</text>
+            </svg>
           </div>
 
           {{-- Info --}}
@@ -2415,22 +2414,22 @@
 
   {{-- Video Modal --}}
   <div id="video-modal"
-      style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.95);align-items:center;justify-content:center;"
+      style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.95);align-items:center;justify-content:center;padding:20px;"
       onclick="closeVideoModal()">
-    <div style="position:relative;width:100%;max-width:420px;margin:0 auto;" onclick="event.stopPropagation()">
-      {{-- Close --}}
+    <div style="position:relative;width:100%;max-width:400px;" onclick="event.stopPropagation()">
       <button onclick="closeVideoModal()"
-              style="position:absolute;top:-44px;right:0;background:none;border:none;color:#fff;font-size:28px;cursor:pointer;line-height:1;">✕</button>
-      {{-- Video --}}
-      <video id="modal-video"
-            style="width:100%;border-radius:12px;background:#000;max-height:80vh;"
-            controls
-            playsinline
-            autoplay>
-      </video>
-      {{-- Info --}}
+              style="position:absolute;top:-44px;right:0;background:none;border:none;color:#fff;font-size:28px;cursor:pointer;line-height:1;z-index:10;">✕</button>
+      {{-- iframe YouTube --}}
+      <div style="position:relative;width:100%;padding-bottom:177.78%;border-radius:12px;overflow:hidden;background:#000;">
+        <iframe id="modal-iframe"
+                src=""
+                style="position:absolute;inset:0;width:100%;height:100%;border:none;"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+        </iframe>
+      </div>
       <div style="padding:14px 4px 0;">
-        <div id="modal-title" style="font-size:16px;font-weight:700;color:#fff;"></div>
+        <div id="modal-title" style="font-size:15px;font-weight:700;color:#fff;"></div>
         <div id="modal-desc"  style="font-size:13px;color:rgba(255,255,255,0.5);margin-top:4px;"></div>
       </div>
     </div>
@@ -2981,27 +2980,18 @@
     }
 
     // ── Video Modal ───────────────────────────────────────────────────
-    function openVideoModal(src, title, desc) {
-      const modal = document.getElementById('video-modal');
-      const video = document.getElementById('modal-video');
+    function openVideoModal(embedUrl, title, desc) {
+      document.getElementById('modal-iframe').src = embedUrl;
       document.getElementById('modal-title').textContent = title;
       document.getElementById('modal-desc').textContent  = desc;
-      video.src = src;
-      modal.style.display = 'flex';
+      document.getElementById('video-modal').style.display = 'flex';
       document.body.style.overflow = 'hidden';
-      video.play();
     }
     function closeVideoModal() {
-      const modal = document.getElementById('video-modal');
-      const video = document.getElementById('modal-video');
-      video.pause();
-      video.src = '';
-      modal.style.display = 'none';
+      document.getElementById('modal-iframe').src = '';
+      document.getElementById('video-modal').style.display = 'none';
       document.body.style.overflow = '';
     }
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') closeVideoModal();
-    });
   </script>
 </body>
 
