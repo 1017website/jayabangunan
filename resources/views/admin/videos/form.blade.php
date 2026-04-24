@@ -100,7 +100,7 @@
   }
 
   // Preview saat edit
-  @if($video - > exists && $video - > youtube_url)
+  @if($video->exists && $video->youtube_url)
   previewYT('{{ $video->youtube_url }}');
   @endif
 </script>
