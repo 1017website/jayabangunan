@@ -40,7 +40,8 @@ class HomeController extends Controller
             'categories',
             'stats',
             'testimonials',
-            'highlights'
+            'highlights',
+            'videos'
         ));
     }
 
