@@ -28,6 +28,7 @@ class HomeController extends Controller
         $testimonials = Testimonial::active()->get();
         $highlights = AboutHighlight::active()->get();
         $videos = Video::active()->take(6)->get();
+        $showVideos = Setting::get('show_video_section', '1') == '1';
 
         return view('frontend.home', compact(
             'hero',
@@ -41,7 +42,8 @@ class HomeController extends Controller
             'stats',
             'testimonials',
             'highlights',
-            'videos'
+            'videos',
+            'showVideos'
         ));
     }
 

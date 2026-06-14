@@ -171,6 +171,24 @@
     </div>
   </div>
 
+  <div class="card" style="margin-bottom:24px;">
+    <div class="card-hd">
+      <span class="card-title">🎬 Section Video</span>
+    </div>
+    <div class="card-bd">
+      <label style="display:flex;align-items:center;gap:12px;cursor:pointer;">
+        <input type="hidden" name="settings[show_video_section]" value="0">
+        <input type="checkbox" name="settings[show_video_section]" value="1"
+          {{ ($general['show_video_section'] ?? '1') == '1' ? 'checked' : '' }}
+          style="width:18px;height:18px;cursor:pointer;">
+        <span style="font-weight:600;">Tampilkan Section Video di halaman utama</span>
+      </label>
+      <p style="margin-top:8px;color:#8b93a7;font-size:13px;">
+        Jika dinonaktifkan, section video tidak akan muncul di website meski ada data video.
+      </p>
+    </div>
+  </div>
+
   <div style="display:flex;gap:12px;position:sticky;bottom:0;background:#0f1117;padding:16px 0;border-top:1px solid #2a3040;margin-top:8px;">
     <button type="submit" class="btn btn-primary" style="font-size:15px;padding:12px 32px;">💾 Simpan Semua Pengaturan</button>
     <a href="{{ route('home') }}" target="_blank" class="btn btn-sec">🌐 Lihat Website</a>

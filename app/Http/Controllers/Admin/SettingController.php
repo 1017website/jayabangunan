@@ -15,7 +15,8 @@ class SettingController extends Controller
         $about   = Setting::getGroup('about');
         $company = Setting::getGroup('company');
         $social  = Setting::getGroup('social');
-        return view('admin.settings.index', compact('hero', 'about', 'company', 'social'));
+        $general = Setting::getGroup('general');
+        return view('admin.settings.index', compact('hero', 'about', 'company', 'social', 'general'));
     }
 
     public function update(Request $request)
